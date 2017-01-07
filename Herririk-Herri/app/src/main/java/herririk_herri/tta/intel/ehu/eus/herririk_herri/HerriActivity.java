@@ -1,5 +1,6 @@
 package herririk_herri.tta.intel.ehu.eus.herririk_herri;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,8 +21,16 @@ public class HerriActivity extends AppCompatActivity {
 
     }
 
-    public void selariketa()
+    public void selariketa(View view)
     {
+        Intent intent=new Intent(this,SelAriketaActivity.class);
+        startActivity(intent);
+
+    }
+    public void selkultura(View view)
+    {
+        Intent intent=new Intent(this,SelKulturaActivity.class);
+        startActivity(intent);
 
     }
 }

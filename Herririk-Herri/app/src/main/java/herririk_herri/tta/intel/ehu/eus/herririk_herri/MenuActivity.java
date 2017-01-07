@@ -14,6 +14,15 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        SharedPreferences prefs = getSharedPreferences("user", MODE_WORLD_READABLE);
+        int unlock=prefs.getInt("unlockTest",0);
+        String valor="Valor de unlocktest es "+unlock;
+        Log.d("Prueba_unlockTest",valor);
+        if(unlock==1)
+        {
+            findViewById(R.id.menu_Test).setVisibility(View.VISIBLE);
+        }
+
     }
     public void selherri(View view)
     {

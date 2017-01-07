@@ -33,6 +33,16 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra(MenuActivity.EXTRA_LOGIN, login);
             SharedPreferences myprefs= this.getSharedPreferences("user", MODE_WORLD_READABLE);
             myprefs.edit().putString("user",login).commit();
+            int val0=0,val1=1,val;
+           // myprefs= this.getSharedPreferences("valor", MODE_WORLD_READABLE);
+            myprefs.edit().putInt("unlockTest",val1).commit();
+            val=myprefs.getInt("unlockTest",0);
+            String mensaje=""+val;
+            Log.d("Lo ha guardado?",mensaje);
+            myprefs.edit().putInt("unlockariketa2",val1).commit();
+            myprefs.edit().putInt("unlockariketa3",val0).commit();
+
+
             startActivity(intent);
 
         }
