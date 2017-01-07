@@ -24,6 +24,11 @@
     <!--Activity selActividadHerria,-->
     <string name="herri_title">Zer egin nahi duzu?</string>
     <string name="herri_selArik">Nolakoa da bertako hizkera?</string>
+    <!--Activity selAriketaHerria,-->
+    <string name="selArik_title">Ariketak</string>
+    <string name="selArik_entzun">ENTZUN eta IDATZI ezazu</string>
+    <string name="selArik_Img">Badakizu zerekin doan?</string>
+    <string name="selArik_Record">Zuk nola ezango zenuke?</string>
 
 
 </resources>

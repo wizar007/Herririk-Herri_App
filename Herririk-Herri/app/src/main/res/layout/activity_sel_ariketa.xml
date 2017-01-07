@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    android:id="@+id/SelAriketaLayout"
+    android:background="@drawable/fondoactiv"
+    tools:context="herririk_herri.tta.intel.ehu.eus.herririk_herri.SelAriketaActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:textColor="#e26420"
+        android:text="@string/selArik_title" />
+    <Button
+        android:id="@+id/selArik_button_audio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/selArik_entzun"
+        android:onClick="audio"/>
+    <Button
+        android:id="@+id/selArik_button_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/selArik_Img"
+        android:onClick="img"/>
+    <Button
+        android:id="@+id/selArik_button_record"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/selArik_Record"
+        android:onClick="record"/>
+
+
+
+</LinearLayout>

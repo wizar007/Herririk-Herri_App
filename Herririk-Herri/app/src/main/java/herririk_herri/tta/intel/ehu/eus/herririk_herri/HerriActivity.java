@@ -19,4 +19,9 @@ public class HerriActivity extends AppCompatActivity {
         this.setTitle(restoredText);
 
     }
+
+    public void selariketa()
+    {
+
+    }
 }

@@ -16,7 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".MenuActivity" />
-        <activity android:name=".HerriActivity"></activity>
+        <activity android:name=".HerriActivity" />
+        <activity android:name=".SelAriketaActivity"></activity>
     </application>
 
 </manifest>
