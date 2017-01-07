@@ -2,6 +2,11 @@
     <string name="app_name">Herririk-Herri</string>
     <string name="user">Erabiltzaile</string>
 
+    <!--Botones comunes-->
+    <string name="button_inicio">Aurrera</string>
+    <string name="button_back">Aurreko</string>
+    <string name="button_next">Hurrengo</string>
+
     <!--Activity main, registro y Login-->
     <string name="login_username">Erabiltzaile</string>
     <string name="login_pass">Pasahitza</string>
@@ -29,6 +34,14 @@
     <string name="selArik_entzun">ENTZUN eta IDATZI ezazu</string>
     <string name="selArik_Img">Badakizu zerekin doan?</string>
     <string name="selArik_Record">Zuk nola ezango zenuke?</string>
+
+    <!--SelKultura activity-->
+    <string name="selKultur_title">Zer ikasi nahi duzu?</string>
+    <string name="selKultur_kultur">Kultura</string>
+    <string name="selKultur_gastronomia">Gastronomia</string>
+    <string name="selKultur_jaiak">Jaiak</string>
+    <string name="selKultur_bitxi">Bitxikeriak</string>
+    <string name="title_activity_kultur">KulturActivity</string>
 
 
 </resources>
