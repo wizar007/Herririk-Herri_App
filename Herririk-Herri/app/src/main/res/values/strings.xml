@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Herririk-Herri</string>
+    <string name="user">Erabiltzaile</string>
 
     <!--Activity main, registro y Login-->
     <string name="login_username">Erabiltzaile</string>
@@ -9,6 +10,16 @@
     <string name="register_lastname">Abizena</string>
     <string name="login">LOGIN</string>
     <string name="register">ERREGISTRATU</string>
+
+    <!--Activity MenuHerria,-->
+    <string name="menu_title">Aukeratu Herria</string>
+    <string name="menu_bermeo">Bermeo</string>
+    <string name="menu_gernika">Gernika</string>
+    <string name="menu_Lekeitio">Lekeitio</string>
+    <string name="menu_Zeberio">Zeberio</string>
+    <string name="menu_Ondarrua">Ondarrua</string>
+    <string name="menu_Zamudio">Zamudio</string>
+    <string name="menu_test">Neurtu zure ezaguera</string>
 
 
 </resources>

@@ -1,6 +1,7 @@
 package herririk_herri.tta.intel.ehu.eus.herririk_herri;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,12 +26,14 @@ public class MainActivity extends AppCompatActivity {
     }
     public void login(View view)
     {
-        //Intent intent=new Intent(this,MenuActivity.class);
+        Intent intent=new Intent(this,MenuActivity.class);
         String login = ((EditText)findViewById(R.id.login_username)).getText().toString();
         String passwd = ((EditText)findViewById(R.id.login_password)).getText().toString();
         if(authenticate(login,passwd)) {
-            //intent.putExtra(MenuActivity.EXTRA_LOGIN, login);
-            //startActivity(intent);
+            intent.putExtra(MenuActivity.EXTRA_LOGIN, login);
+            SharedPreferences myprefs= this.getSharedPreferences("user", MODE_WORLD_READABLE);
+            myprefs.edit().putString("user",login).commit();
+            startActivity(intent);
 
         }
     }
