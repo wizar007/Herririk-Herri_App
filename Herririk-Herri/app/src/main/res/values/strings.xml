@@ -21,5 +21,9 @@
     <string name="menu_Zamudio">Zamudio</string>
     <string name="menu_test">Neurtu zure ezaguera</string>
 
+    <!--Activity selActividadHerria,-->
+    <string name="herri_title">Zer egin nahi duzu?</string>
+    <string name="herri_selArik">Nolakoa da bertako hizkera?</string>
+
 
 </resources>
