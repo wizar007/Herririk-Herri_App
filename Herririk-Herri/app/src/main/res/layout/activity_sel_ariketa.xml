@@ -10,7 +10,8 @@
     android:orientation="vertical"
     android:id="@+id/SelAriketaLayout"
     android:background="@drawable/fondoactiv"
-    tools:context="herririk_herri.tta.intel.ehu.eus.herririk_herri.SelAriketaActivity">
+    tools:context="herririk_herri.tta.intel.ehu.eus.herririk_herri.SelAriketaActivity"
+    android:weightSum="1">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,24 +20,29 @@
         android:textSize="30dp"
         android:textColor="#e26420"
         android:text="@string/selArik_title" />
+
     <Button
         android:id="@+id/selArik_button_audio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/selArik_entzun"
         android:onClick="audio"/>
-    <Button
-        android:id="@+id/selArik_button_img"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/selArik_Img"
-        android:onClick="img"/>
-    <Button
-        android:id="@+id/selArik_button_record"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/selArik_Record"
-        android:onClick="record"/>
+        <Button
+            android:id="@+id/selArik_button_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/selArik_Img"
+            android:drawableLeft="@drawable/lock"
+            android:onClick="img"/>
+
+        <Button
+            android:id="@+id/selArik_button_record"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/selArik_Record"
+            android:onClick="record"
+             />
+
 
 
 
