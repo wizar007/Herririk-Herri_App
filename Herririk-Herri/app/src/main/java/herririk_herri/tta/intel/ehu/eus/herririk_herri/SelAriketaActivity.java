@@ -1,8 +1,10 @@
 package herririk_herri.tta.intel.ehu.eus.herririk_herri;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 public class SelAriketaActivity extends AppCompatActivity {
@@ -33,5 +35,33 @@ public class SelAriketaActivity extends AppCompatActivity {
             mButton.setOnClickListener(null);
         }
 
+    }
+
+    public void selAriketa(View view)
+    {
+        Intent intent=new Intent(this,RecordActivity.class);
+        SharedPreferences myprefs= this.getSharedPreferences("herri", MODE_WORLD_READABLE);
+        //this.setTitle("Prueba111");
+
+
+        switch (view.getId())
+        {
+            case (R.id.selArik_button_audio):
+                myprefs.edit().putString("ariketa","Audio").commit();
+                startActivity(intent);
+
+                break;
+            case (R.id.selArik_button_img):
+                myprefs.edit().putString("ariketa","Img").commit();
+                startActivity(intent);
+
+                break;
+            case (R.id.selArik_button_record):
+                myprefs.edit().putString("ariketa","Record").commit();
+                startActivity(intent);
+
+                break;
+
+        }
     }
 }

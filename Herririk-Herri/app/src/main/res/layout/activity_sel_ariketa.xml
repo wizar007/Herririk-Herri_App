@@ -26,14 +26,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/selArik_entzun"
-        android:onClick="audio"/>
+        android:onClick="selAriketa"/>
         <Button
             android:id="@+id/selArik_button_img"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/selArik_Img"
             android:drawableLeft="@drawable/lock"
-            android:onClick="img"/>
+            android:onClick="selAriketa"/>
 
         <Button
             android:id="@+id/selArik_button_record"
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:text="@string/selArik_Record"
             android:drawableLeft="@drawable/lock"
-            android:onClick="record"
+            android:onClick="selAriketa"
              />
 
 

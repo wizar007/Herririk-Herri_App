@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,6 +7,64 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    android:background="@drawable/fondojueg"
+    android:id="@+id/RecordLayout"
     tools:context="herririk_herri.tta.intel.ehu.eus.herririk_herri.RecordActivity">
+    <Button
+        android:id="@+id/record_button_init"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/button_inicio"
+        android:onClick="load"/>
+    <TextView
+        android:id="@+id/record_arik_mota"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:visibility="invisible"
+        android:text="" />
+    <TextView
+        android:id="@+id/record_arik_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:visibility="invisible"
+        android:text="" />
+    <TextView
+        android:id="@+id/record_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:visibility="invisible"
+        android:text="@string/app_name" />
+    <Button
+        android:id="@+id/record_button_record"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/button_startRecord"
+        android:visibility="invisible"
+        android:onClick="record"/>
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/record_button_correct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/button_correct"
+        android:visibility="invisible"
+        android:onClick="zuzendu"/>
+    <Button
+        android:id="@+id/record_button_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_next"
+        android:visibility="invisible"
+        android:onClick="next"/>
+
+
+</LinearLayout>

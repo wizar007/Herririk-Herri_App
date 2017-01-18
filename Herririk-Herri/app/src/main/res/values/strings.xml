@@ -10,6 +10,8 @@
     <string name="button_inicio">Aurrera</string>
     <string name="button_back">Aurreko</string>
     <string name="button_next">Hurrengo</string>
+    <string name="button_startRecord">Hasi grabazioa</string>
+    <string name="button_correct">Zuzendu</string>
 
     <!--Activity main, registro y Login-->
     <string name="login_username">Erabiltzaile</string>
@@ -47,7 +49,11 @@
     <string name="selKultur_bitxi">Bitxikeriak</string>
     <string name="title_activity_kultur">KulturActivity</string>
 
-    <!
+    <!--RecordActivity Layout-->
+    <string name="Record_title">Zuk nola ezango zenuke?</string>
+    <string name="Record_ark_mota">Ariketa Mota:</string>
+    <string name="Record_ark_code">Ariketa Code</string>
+
 
 
 </resources>
