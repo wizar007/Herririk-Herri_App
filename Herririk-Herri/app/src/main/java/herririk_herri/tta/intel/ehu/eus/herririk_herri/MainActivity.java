@@ -141,7 +141,8 @@ public class MainActivity extends AppCompatActivity {
                     jsonObject.put("testVis",user.getTestVis());
                     jsonObject.put("ark3Unblocked",user.getArk3Unblocked());
                     jsonObject.put("ark2Unblocked",user.getArk2Unblocked());
-                    test.setLogin(rest.addUser(jsonObject,"/addUser"));
+                    Log.e("JSON enviado:",jsonObject.toString());
+                    test.setLogin(rest.addUser(jsonObject,"addUser"));
                     return test;
                 }
 

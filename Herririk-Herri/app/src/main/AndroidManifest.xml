@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="herririk_herri.tta.intel.ehu.eus.herririk_herri">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- Permission to write to external storage -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -22,7 +23,8 @@
         <activity android:name=".HerriActivity" />
         <activity android:name=".SelAriketaActivity" />
         <activity android:name=".SelKulturaActivity" />
-        <activity android:name=".KulturActivity"></activity>
+        <activity android:name=".KulturActivity" />
+        <activity android:name=".RecordActivity"></activity>
     </application>
 
 </manifest>

@@ -76,8 +76,10 @@ public class RestClient {
             conn=getConnection(path);
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+            conn.setDoOutput(true);
             PrintWriter pw = new PrintWriter(conn.getOutputStream());
             pw.print(json.toString());
+            pw.close();
             return conn.getResponseCode();
 
         }finally {
@@ -94,8 +96,11 @@ public class RestClient {
             conn=getConnection(path);
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+            conn.setDoOutput(true);
             PrintWriter pw = new PrintWriter(conn.getOutputStream());
             pw.print(json.toString());
+            pw.close();
+            int rspcode=conn.getResponseCode();
             if(conn.getResponseCode()==200)
             {
                 return conn.getResponseMessage();
