@@ -2,6 +2,10 @@
     <string name="app_name">Herririk-Herri</string>
     <string name="user">Erabiltzaile</string>
 
+    <!--URl peticiones REST-->
+    <string name="url_server">http://u017633.ehu.eus:28080/Herririk_herri_Serv/rest/Herririk-Herri</string>
+
+
     <!--Botones comunes-->
     <string name="button_inicio">Aurrera</string>
     <string name="button_back">Aurreko</string>

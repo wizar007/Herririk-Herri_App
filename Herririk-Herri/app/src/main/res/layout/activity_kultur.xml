@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+
+    >
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,6 +17,7 @@
     android:background="@drawable/fondokultugas"
     android:id="@+id/kulturLayout"
     tools:context="herririk_herri.tta.intel.ehu.eus.herririk_herri.KulturActivity">
+
 
     <Button
         android:id="@+id/kultur_button_init"
@@ -61,3 +68,4 @@
     </GridLayout>
 
 </LinearLayout>
+    </ScrollView>

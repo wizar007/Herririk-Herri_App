@@ -1,16 +1,32 @@
 package herririk_herri.tta.intel.ehu.eus.herririk_herri;
 
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.InputStream;
+import java.net.URL;
+import java.util.List;
+
+import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.Kultura;
+import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.ListKultura;
+import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.coms.ProgressTask;
+import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.coms.RestClient;
+
 public class KulturActivity extends AppCompatActivity {
-    int indice=0;
-    int size=2;
+    private int indice=0;
+    private int size=2;
     final String URL=null;
+    private List<Kultura> lkultura;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,24 +40,77 @@ public class KulturActivity extends AppCompatActivity {
 
     public void load(View view)
     {
-
+        final String url=getString(R.string.url_server);
+        SharedPreferences myprefs=getSharedPreferences("herri",MODE_WORLD_READABLE);
+        final String herri=myprefs.getString("herri",null);
+        final String kultur=myprefs.getString("kultur",null);
         //llamada a logica para solicitar los datos, petición al servidor
-        indice=0;
-        final String imageUrl="https://dl.dropboxusercontent.com/s/csw2mjy6kau1twu/12.%20Turismo%20bulegoa.jpg?dl=0";
-        String text="Oficina de turismo de algun Lugar";
         View element=findViewById(R.id.kultur_button_init);
         element.setVisibility(View.GONE);
-        ImageView img=(ImageView)findViewById(R.id.kultur_img);
-        /*Bitmap bitmap=null;
-        bitmap=DownloadResources.downloadImg(imageUrl);
-        img.setImageBitmap(bitmap);*/
-        // Loader image - will be shown before loading image
-        int loader = R.drawable.icon_prueba;
-        // Imageview to show
-        ImageView image = (ImageView) findViewById(R.id.image);
-        ImageLoader imgLoader=new ImageLoader(getApplicationContext());
-        imgLoader.DisplayImage(imageUrl, loader, image);
-        img.setVisibility(View.VISIBLE);
+        final int indice=0;
+        new ProgressTask<ListKultura>(this)
+        {
+
+            @Override
+            protected ListKultura work() throws Exception {
+                RestClient rest= new RestClient(url);
+                ListKultura kulturas=new ListKultura();
+                JSONObject jsonObject = rest.getJson(String.format("requestKultura?herri=%s&kulturamota=%s",herri,kultur ));
+                JSONArray lista=jsonObject.getJSONArray("kultura");
+
+                for(int i =0;i<lista.length();i++){
+                    JSONObject temp=lista.getJSONObject(i);
+
+
+                    Kultura objeto=new Kultura(temp.getString("img"),temp.getString("informacion"),temp.getString("kulturaType"));
+
+                    kulturas.addChoice(objeto);
+
+
+
+
+                }
+
+                kulturas.setKulturaCode(jsonObject.getString("kulturaCode"));
+                kulturas.setSize(jsonObject.getInt("total"));
+
+
+
+
+
+
+                return kulturas;
+            }
+
+            @Override
+            protected void onFinish(ListKultura result) {
+                /*img.setImageBitmap(result);
+                img.setVisibility(View.VISIBLE);
+                Toast.makeText(context,"Aqui he llegado",Toast.LENGTH_SHORT).show();*/
+                lkultura=result.lkultura;
+                size=result.getSize();
+                String imageUrl=lkultura.get(0).getImg();//"https://dl.dropboxusercontent.com/s/csw2mjy6kau1twu/12.%20Turismo%20bulegoa.jpg?dl=0";
+                String text=lkultura.get(0).getInformacion();
+                String title=result.getKulturaCode();
+
+
+                DownloadImage(imageUrl);
+                ChangeView(text,title);
+
+                //img.setVisibility(View.VISIBLE);
+
+
+
+
+            }
+        }.execute();
+
+
+    }
+    protected void ChangeView(String text,String title)
+    {
+        this.setTitle(title);
+        View element=null;
         TextView texto=(TextView)findViewById(R.id.kultur_text);
         texto.setText(text);
         texto.setVisibility(View.VISIBLE);
@@ -49,13 +118,44 @@ public class KulturActivity extends AppCompatActivity {
         element.setVisibility(View.GONE);
         element=findViewById(R.id.kultur_button_next);
         element.setVisibility(View.VISIBLE);
+    }
+    protected void loadImage(Bitmap bm)
+    {
+        final ImageView img=(ImageView)findViewById(R.id.kultur_img);
+        img.setImageBitmap(bm);
+        img.setVisibility(View.VISIBLE);
+        //Toast.makeText(context,"Aqui he llegado",Toast.LENGTH_SHORT).show();
+    }
+    protected void DownloadImage(String path)
+    {
+        final String imageUrl=path;
+        new ProgressTask<Bitmap>(this)
+        {
 
+            @Override
+            protected Bitmap work() throws Exception {
+                Bitmap bm=null;
+                bm= BitmapFactory.decodeStream((InputStream)new URL(imageUrl).getContent());
+
+
+                return bm;
+            }
+
+            @Override
+            protected void onFinish(Bitmap result) {
+                loadImage(result);
+                /*img.setImageBitmap(result);
+                img.setVisibility(View.VISIBLE);
+                Toast.makeText(context,"Aqui he llegado",Toast.LENGTH_SHORT).show();*/
+
+            }
+        }.execute();
     }
 
     public void next(View view)
     {
 
-        if(indice==size)
+        if(indice==size-1)
         {
             indice=0;
         }
@@ -64,20 +164,13 @@ public class KulturActivity extends AppCompatActivity {
             indice++;
         }
         //llamada a logica para solicitar los datos, petición al servidor
-        String imageUrl="https://dl.dropboxusercontent.com/s/csw2mjy6kau1twu/12.%20Turismo%20bulegoa.jpg?dl=0";//cargar imagen de lista
-        String text="Oficina de turismo de algun Lugar";//cargar texto de la lista
-        View element=null;/*
-        ImageView img=(ImageView)findViewById(R.id.kultur_img);
-        try {
-            ImageView i = (ImageView)findViewById(R.id.image);
-            Bitmap bitmap = BitmapFactory.decodeStream((InputStream)new URL(imageUrl).getContent());//carga la imagen de internet
-            i.setImageBitmap(bitmap);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        img.setVisibility(View.VISIBLE);*/
+        String imageUrl=lkultura.get(indice).getImg();//"https://dl.dropboxusercontent.com/s/csw2mjy6kau1twu/12.%20Turismo%20bulegoa.jpg?dl=0";//cargar imagen de lista
+        String text=lkultura.get(indice).getInformacion();//cargar texto de la lista
+        DownloadImage(imageUrl);
+        //View element=null;
+        View element=findViewById(R.id.kultur_button_init);
+        element.setVisibility(View.GONE);
+
         TextView texto=(TextView)findViewById(R.id.kultur_text);
         texto.setText(text);
         texto.setVisibility(View.VISIBLE);
@@ -105,20 +198,10 @@ public class KulturActivity extends AppCompatActivity {
             indice--;
         }
         //llamada a logica para solicitar los datos, petición al servidor
-        String imageUrl="https://dl.dropboxusercontent.com/s/csw2mjy6kau1twu/12.%20Turismo%20bulegoa.jpg?dl=0";//cargar imagen de lista
-        String text="Oficina de turismo de algun Lugar";//cargar texto de la lista
+        String imageUrl=lkultura.get(indice).getImg();//"https://dl.dropboxusercontent.com/s/csw2mjy6kau1twu/12.%20Turismo%20bulegoa.jpg?dl=0";//cargar imagen de lista
+        String text=lkultura.get(indice).getInformacion();//cargar texto de la lista
+        DownloadImage(imageUrl);
 
-        /*ImageView img=(ImageView)findViewById(R.id.kultur_img);
-        try {
-            ImageView i = (ImageView)findViewById(R.id.image);
-            Bitmap bitmap = BitmapFactory.decodeStream((InputStream)new URL(imageUrl).getContent());//carga la imagen de internet
-            i.setImageBitmap(bitmap);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        img.setVisibility(View.VISIBLE);*/
         TextView texto=(TextView)findViewById(R.id.kultur_text);
         texto.setText(text);
         texto.setVisibility(View.VISIBLE);
