@@ -25,7 +25,8 @@
         <activity android:name=".SelKulturaActivity" />
         <activity android:name=".KulturActivity" />
         <activity android:name=".RecordActivity" />
-        <activity android:name=".TestActivity"></activity>
+        <activity android:name=".TestActivity" />
+        <activity android:name=".ImgActivity"></activity>
     </application>
 
 </manifest>

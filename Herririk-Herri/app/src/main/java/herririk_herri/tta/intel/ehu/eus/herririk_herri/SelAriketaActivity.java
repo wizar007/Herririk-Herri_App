@@ -52,11 +52,13 @@ public class SelAriketaActivity extends AppCompatActivity {
 
                 break;
             case (R.id.selArik_button_img):
+                intent=new Intent(this,ImgActivity.class);
                 myprefs.edit().putString("ariketa","Img").commit();
                 startActivity(intent);
 
                 break;
             case (R.id.selArik_button_record):
+                intent=new Intent(this,RecordActivity.class);
                 myprefs.edit().putString("ariketa","Record").commit();
                 startActivity(intent);
 

@@ -58,7 +58,10 @@
     <string name="Record_ark_mota">Ariketa Mota:</string>
     <string name="Record_ark_code">Ariketa Code</string>
 
-
+    <!--ImgActivity Layout-->
+    <string name="Img_title">Zuk nola ezango zenuke?</string>
+    <string name="Img_ark_mota">Ariketa Mota:</string>
+    <string name="Img_ark_code">Ariketa Code</string>
 
 
 </resources>
