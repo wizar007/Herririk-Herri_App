@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -25,6 +26,7 @@ import java.util.List;
 import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.Exercise;
 import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.ListExercise;
 import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.Test;
+import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.User;
 import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.coms.ProgressTask;
 import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.coms.RestClient;
 
@@ -197,6 +199,59 @@ public class ImgActivity extends AppCompatActivity implements View.OnClickListen
     }
     protected void SuperaEjercicio()
     {
+        final String path=getString(R.string.url_server);
+        if(aciertos>=size/2)
+        {
+            SharedPreferences myprefs=getSharedPreferences("user",MODE_WORLD_READABLE);
+            final String user=myprefs.getString("user",null);
+            final int testVis=myprefs.getInt("unlockTest",0);
+            final int ark2Unblocked=myprefs.getInt("unlockariketa2",0);
+            int ark3=myprefs.getInt("unlockariketa3",0);
+            if(ark3==0)
+            {
+                final int ark3Unblocked=1;
+                myprefs.edit().putInt("unlockariketa3",ark3Unblocked).commit();
+                myprefs.edit().commit();
+                new ProgressTask<User>(this)
+                {
+
+                    @Override
+                    protected User work() throws Exception {
+                        User result=new User();
+                        RestClient rest = new RestClient(path);//se genera
+                        //rest.setProperty();
+                        JSONObject jsonObject=new JSONObject();
+                        jsonObject.put("lastName"," ");
+                        jsonObject.put("login",user);
+                        jsonObject.put("name"," ");
+                        jsonObject.put("password"," ");
+                        jsonObject.put("testVis",testVis);
+                        jsonObject.put("ark3Unblocked",ark2Unblocked);
+                        jsonObject.put("ark2Unblocked",ark3Unblocked);
+                        Log.e("JSON enviado:",jsonObject.toString());
+                        result.setTestVis(rest.postJson(jsonObject,"updateUser"));//Chapuza para poder pasar el response code sin tener que modificar progressTask
+                        return result;
+                    }
+
+                    @Override
+                    protected void onFinish(User result) {
+                        if(result.getTestVis()==200)
+                        {
+                            Toast.makeText(context,"Has desbloqueado el ejercicio siguiente",Toast.LENGTH_SHORT).show();
+                            load_prefs();
+                        }
+                        //Toast.makeText(context,"Bienvenido "+result.getUser(),Toast.LENGTH_SHORT);
+
+
+                    }
+                }.execute();
+            }
+
+        }
+
+    }
+    protected void load_prefs()
+    {
 
     }
 
@@ -206,7 +261,7 @@ public class ImgActivity extends AppCompatActivity implements View.OnClickListen
         if(indice==size-1)
         {
             SuperaEjercicio();
-            Toast.makeText(this,"Ariketa bukatuta "+aciertos+" erantzun zuzena izan duzu",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this,"Ariketa bukatuta "+aciertos+" erantzun zuzena izan duzu",Toast.LENGTH_SHORT).show();
             Intent intent= new Intent(this,SelAriketaActivity.class);
             startActivity(intent);
         }
