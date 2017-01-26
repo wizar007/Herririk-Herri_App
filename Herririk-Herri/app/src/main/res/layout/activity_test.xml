@@ -9,10 +9,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     android:background="@drawable/fondotest"
-    android:id="@+id/TestLayout"
+    android:id="@+id/test_layout"
     tools:context="herririk_herri.tta.intel.ehu.eus.herririk_herri.TestActivity">
     <Button
-        android:id="@+id/record_button_init"
+        android:id="@+id/test_button_init"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:visibility="invisible"
         android:gravity="center"
+        android:textStyle="bold"
         android:textSize="20dp"
         android:text="prueba enunciado test"/>
     <RadioGroup
@@ -43,7 +44,7 @@
         android:text="@string/button_correct"
         android:onClick="zuzendu"/>
     <Button
-        android:id="@+id/record_button_next"
+        android:id="@+id/test_button_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_next"
