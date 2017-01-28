@@ -148,28 +148,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         {
             indice++;
         }
-        /*//llamada a logica para solicitar los datos, petición al servidor
-        String imageUrl=lkultura.get(indice).getImg();//"https://dl.dropboxusercontent.com/s/csw2mjy6kau1twu/12.%20Turismo%20bulegoa.jpg?dl=0";//cargar imagen de lista
-        String text=lkultura.get(indice).getInformacion();//cargar texto de la lista
-        DownloadImage(imageUrl);
-        //View element=null;
-        View element=findViewById(R.id.kultur_button_init);
-        element.setVisibility(View.GONE);
-        TextView texto=(TextView)findViewById(R.id.kultur_text);
-        texto.setText(text);
-        texto.setVisibility(View.VISIBLE);
-        element=findViewById(R.id.kultur_button_back);
-        if(indice==0){
-            element.setVisibility(View.GONE);
-        }
-        else
-        {
-            element.setVisibility(View.VISIBLE);
-        }
-        element=findViewById(R.id.kultur_button_next);
-        element.setVisibility(View.VISIBLE);
 
-    */
         RadioGroup group= (RadioGroup)findViewById(R.id.test_choices);
         group.removeAllViews();
         getData();
