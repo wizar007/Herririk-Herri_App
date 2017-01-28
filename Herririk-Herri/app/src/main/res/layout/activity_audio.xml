@@ -10,7 +10,7 @@
     android:orientation="vertical"
     android:background="@drawable/fondojueg"
     android:id="@+id/audio_layout"
-    tools:context="herririk_herri.tta.intel.ehu.eus.herririk_herri.AudioActivity">
+    tools:context=".View.AudioActivity">
 
     <Button
         android:id="@+id/audio_button_init"

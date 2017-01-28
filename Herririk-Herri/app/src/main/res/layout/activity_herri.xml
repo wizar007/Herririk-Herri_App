@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     android:background="@drawable/fondoactiv"
-    tools:context="herririk_herri.tta.intel.ehu.eus.herririk_herri.HerriActivity">
+    tools:context=".View.HerriActivity">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -14,22 +14,22 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".View.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MenuActivity" />
-        <activity android:name=".HerriActivity" />
-        <activity android:name=".SelAriketaActivity" />
-        <activity android:name=".SelKulturaActivity" />
-        <activity android:name=".KulturActivity" />
-        <activity android:name=".RecordActivity" />
-        <activity android:name=".TestActivity" />
-        <activity android:name=".ImgActivity" />
-        <activity android:name=".AudioActivity"></activity>
+        <activity android:name=".View.MenuActivity" />
+        <activity android:name=".View.HerriActivity" />
+        <activity android:name=".View.SelAriketaActivity" />
+        <activity android:name=".View.SelKulturaActivity" />
+        <activity android:name=".View.KulturActivity" />
+        <activity android:name=".View.RecordActivity" />
+        <activity android:name=".View.TestActivity" />
+        <activity android:name=".View.ImgActivity" />
+        <activity android:name=".View.AudioActivity"></activity>
     </application>
 
 </manifest>

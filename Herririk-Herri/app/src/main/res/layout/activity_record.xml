@@ -10,7 +10,7 @@
     android:orientation="vertical"
     android:background="@drawable/fondojueg"
     android:id="@+id/record_layout"
-    tools:context="herririk_herri.tta.intel.ehu.eus.herririk_herri.RecordActivity">
+    tools:context=".View.RecordActivity">
     <Button
         android:id="@+id/record_button_init"
         android:layout_width="wrap_content"

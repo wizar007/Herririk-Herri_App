@@ -1,4 +1,4 @@
-package herririk_herri.tta.intel.ehu.eus.herririk_herri;
+package herririk_herri.tta.intel.ehu.eus.herririk_herri.View;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,6 +17,7 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+import herririk_herri.tta.intel.ehu.eus.herririk_herri.R;
 import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.Exercise;
 import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.ListExercise;
 import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.ListTest;

@@ -10,7 +10,7 @@
     android:orientation="vertical"
     android:background="@drawable/fondotest"
     android:id="@+id/test_layout"
-    tools:context="herririk_herri.tta.intel.ehu.eus.herririk_herri.TestActivity">
+    tools:context=".View.TestActivity">
     <Button
         android:id="@+id/test_button_init"
         android:layout_width="wrap_content"

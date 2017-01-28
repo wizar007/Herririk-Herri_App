@@ -10,7 +10,7 @@
     android:orientation="vertical"
     android:id="@+id/SelKulturLayout"
     android:background="@drawable/imgkultura"
-    tools:context="herririk_herri.tta.intel.ehu.eus.herririk_herri.SelKulturaActivity">
+    tools:context=".View.SelKulturaActivity">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

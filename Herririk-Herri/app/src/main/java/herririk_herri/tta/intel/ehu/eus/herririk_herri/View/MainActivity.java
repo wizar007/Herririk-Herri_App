@@ -1,4 +1,4 @@
-package herririk_herri.tta.intel.ehu.eus.herririk_herri;
+package herririk_herri.tta.intel.ehu.eus.herririk_herri.View;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import org.json.JSONObject;
 
+import herririk_herri.tta.intel.ehu.eus.herririk_herri.R;
 import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.User;
 import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.coms.ProgressTask;
 import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.coms.RestClient;

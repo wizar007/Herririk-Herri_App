@@ -1,4 +1,4 @@
-package herririk_herri.tta.intel.ehu.eus.herririk_herri;
+package herririk_herri.tta.intel.ehu.eus.herririk_herri.View;
 
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -17,6 +17,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
 
+import herririk_herri.tta.intel.ehu.eus.herririk_herri.R;
 import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.Kultura;
 import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.ListKultura;
 import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.coms.ProgressTask;

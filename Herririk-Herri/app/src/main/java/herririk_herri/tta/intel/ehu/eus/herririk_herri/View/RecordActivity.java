@@ -1,4 +1,4 @@
-package herririk_herri.tta.intel.ehu.eus.herririk_herri;
+package herririk_herri.tta.intel.ehu.eus.herririk_herri.View;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -24,6 +24,7 @@ import org.w3c.dom.Text;
 import java.io.IOException;
 import java.util.List;
 
+import herririk_herri.tta.intel.ehu.eus.herririk_herri.R;
 import herririk_herri.tta.intel.ehu.eus.herririk_herri.View.AudioPlayer;
 import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.Exercise;
 import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.Kultura;

@@ -16,7 +16,7 @@
     android:orientation="vertical"
     android:background="@drawable/fondojueg"
     android:id="@+id/img_layout"
-    tools:context="herririk_herri.tta.intel.ehu.eus.herririk_herri.ImgActivity">
+    tools:context=".View.ImgActivity">
 
     <Button
         android:id="@+id/img_button_init"

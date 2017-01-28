@@ -1,12 +1,13 @@
-package herririk_herri.tta.intel.ehu.eus.herririk_herri;
+package herririk_herri.tta.intel.ehu.eus.herririk_herri.View;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Layout;
 import android.util.Log;
 import android.view.View;
+
+import herririk_herri.tta.intel.ehu.eus.herririk_herri.R;
 
 public class MenuActivity extends AppCompatActivity {
     public final static String EXTRA_LOGIN="es.tta.ejemplo31.login";
