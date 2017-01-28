@@ -142,8 +142,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         if(indice==size-1)
         {
             Toast.makeText(this,"Ariketa bukatuta "+aciertos+" erantzun zuzena izan duzu",Toast.LENGTH_SHORT).show();
-            Intent intent= new Intent(this,MenuActivity.class);
-            startActivity(intent);
+            finish();
         }
         else
         {

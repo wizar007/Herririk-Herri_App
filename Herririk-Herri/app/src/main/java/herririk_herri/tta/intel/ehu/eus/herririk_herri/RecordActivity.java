@@ -201,8 +201,7 @@ public class RecordActivity extends AppCompatActivity {
         {
             SuperaEjercicio();
             //Toast.makeText(this,"Ariketa bukatuta "+aciertos+" erantzun zuzena izan duzu",Toast.LENGTH_SHORT).show();
-            Intent intent= new Intent(this,SelAriketaActivity.class);
-            startActivity(intent);
+            finish();
         }
         else
         {
