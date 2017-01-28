@@ -199,7 +199,8 @@ public class AudioActivity extends AppCompatActivity implements View.OnClickList
         {
             indice++;
         }
-
+        TextView textWording=(TextView)findViewById(R.id.audio_code);
+        textWording.setText(getString(R.string.audio_ark_code)+": "+lExercise.get(indice).getAriketaKode());
         RadioGroup group= (RadioGroup)findViewById(R.id.audio_choices);
         group.removeAllViews();
         getData();
@@ -207,7 +208,7 @@ public class AudioActivity extends AppCompatActivity implements View.OnClickList
         if(indice==size-1)
         {
             Button bt=(Button)findViewById(R.id.audio_button_next);
-            bt.setText("Bukatu test");
+            bt.setText("Bukatu Ariketa");
         }
 
     }
@@ -251,7 +252,7 @@ public class AudioActivity extends AppCompatActivity implements View.OnClickList
                     protected void onFinish(User result) {
                         if(result.getTestVis()==200)
                         {
-                            Toast.makeText(context,"Has desbloqueado el ejercicio siguiente",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context,"Hurrengo ariketa desblokeatu duzu",Toast.LENGTH_SHORT).show();
                         }
                         //Toast.makeText(context,"Bienvenido "+result.getUser(),Toast.LENGTH_SHORT);
 

@@ -237,7 +237,7 @@ public class ImgActivity extends AppCompatActivity implements View.OnClickListen
                     protected void onFinish(User result) {
                         if(result.getTestVis()==200)
                         {
-                            Toast.makeText(context,"Has desbloqueado el ejercicio siguiente",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context,"Hurrengo ariketa desblokeatu duzu",Toast.LENGTH_SHORT).show();
                         }
                         //Toast.makeText(context,"Bienvenido "+result.getUser(),Toast.LENGTH_SHORT);
 
@@ -265,28 +265,8 @@ public class ImgActivity extends AppCompatActivity implements View.OnClickListen
         {
             indice++;
         }
-        /*//llamada a logica para solicitar los datos, petición al servidor
-        String imageUrl=lkultura.get(indice).getImg();//"https://dl.dropboxusercontent.com/s/csw2mjy6kau1twu/12.%20Turismo%20bulegoa.jpg?dl=0";//cargar imagen de lista
-        String text=lkultura.get(indice).getInformacion();//cargar texto de la lista
-        DownloadImage(imageUrl);
-        //View element=null;
-        View element=findViewById(R.id.kultur_button_init);
-        element.setVisibility(View.GONE);
-        TextView texto=(TextView)findViewById(R.id.kultur_text);
-        texto.setText(text);
-        texto.setVisibility(View.VISIBLE);
-        element=findViewById(R.id.kultur_button_back);
-        if(indice==0){
-            element.setVisibility(View.GONE);
-        }
-        else
-        {
-            element.setVisibility(View.VISIBLE);
-        }
-        element=findViewById(R.id.kultur_button_next);
-        element.setVisibility(View.VISIBLE);
-
-    */
+        TextView textWording=(TextView)findViewById(R.id.img_code);
+        textWording.setText(getString(R.string.Img_ark_code)+": "+lExercise.get(indice).getAriketaKode());
         RadioGroup group= (RadioGroup)findViewById(R.id.img_choices);
         group.removeAllViews();
         getData();
@@ -294,7 +274,7 @@ public class ImgActivity extends AppCompatActivity implements View.OnClickListen
         if(indice==size-1)
         {
             Button bt=(Button)findViewById(R.id.img_button_next);
-            bt.setText("Bukatu test");
+            bt.setText("Bukatu Ariketa");
         }
 
     }

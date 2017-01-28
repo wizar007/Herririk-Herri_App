@@ -9,7 +9,9 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -26,6 +28,7 @@ import herririk_herri.tta.intel.ehu.eus.herririk_herri.View.AudioPlayer;
 import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.Exercise;
 import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.Kultura;
 import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.ListExercise;
+import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.User;
 import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.coms.ProgressTask;
 import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.coms.RestClient;
 
@@ -150,6 +153,7 @@ public class RecordActivity extends AppCompatActivity {
     protected void zuzendu(View view) {
 
         findViewById(R.id.record_button_correct).setVisibility(View.INVISIBLE);
+        findViewById(R.id.record_button_record).setVisibility(View.INVISIBLE);
         findViewById(R.id.record_button_solucion).setVisibility(View.VISIBLE);
         findViewById(R.id.record_button_next).setVisibility(View.VISIBLE);
     }
@@ -189,6 +193,83 @@ public class RecordActivity extends AppCompatActivity {
             findViewById(R.id.record_button_play).setVisibility(View.VISIBLE);
 
         }
+    }
+    public void next(View view)
+    {
+
+        if(indice==size-1)
+        {
+            SuperaEjercicio();
+            //Toast.makeText(this,"Ariketa bukatuta "+aciertos+" erantzun zuzena izan duzu",Toast.LENGTH_SHORT).show();
+            Intent intent= new Intent(this,SelAriketaActivity.class);
+            startActivity(intent);
+        }
+        else
+        {
+            indice++;
+        }
+
+        TextView textWording=(TextView)findViewById(R.id.record_code);
+        textWording.setText(getString(R.string.Record_ark_code)+": "+lExercise.get(indice).getAriketaKode());
+        getData();
+        findViewById(R.id.record_button_play).setVisibility(View.INVISIBLE);
+        findViewById(R.id.record_button_solucion).setVisibility(View.INVISIBLE);
+        findViewById(R.id.record_button_next).setVisibility(View.INVISIBLE);
+        if(indice==size-1)
+        {
+            Button bt=(Button)findViewById(R.id.record_button_next);
+            bt.setText("Bukatu Ariketa");
+        }
+
+    }
+    protected void SuperaEjercicio()
+    {
+        final String path=getString(R.string.url_server);
+        SharedPreferences myprefs=getSharedPreferences("user",MODE_WORLD_READABLE);
+        final String user=myprefs.getString("user",null);
+        int test=myprefs.getInt("unlockTest",0);
+        final int ark2Unblocked=myprefs.getInt("unlockariketa2",0);
+        final int ark3Unblocked=myprefs.getInt("unlockariketa3",0);
+        if(test==0)
+        {
+            final int testVis=1;
+            myprefs.edit().putInt("unlockTest",testVis).commit();
+            myprefs.edit().commit();
+            new ProgressTask<User>(this)
+            {
+
+                @Override
+                protected User work() throws Exception {
+                    User result=new User();
+                    RestClient rest = new RestClient(path);//se genera
+                    //rest.setProperty();
+                    JSONObject jsonObject=new JSONObject();
+                    jsonObject.put("lastName"," ");
+                    jsonObject.put("login",user);
+                    jsonObject.put("name"," ");
+                    jsonObject.put("password"," ");
+                    jsonObject.put("testVis",testVis);
+                    jsonObject.put("ark3Unblocked",ark2Unblocked);
+                    jsonObject.put("ark2Unblocked",ark3Unblocked);
+                    Log.e("JSON enviado:",jsonObject.toString());
+                    result.setTestVis(rest.postJson(jsonObject,"updateUser"));//Chapuza para poder pasar el response code sin tener que modificar progressTask
+                    return result;
+                }
+
+                @Override
+                protected void onFinish(User result) {
+                    if(result.getTestVis()==200)
+                    {
+                        Toast.makeText(context,"Test desblokeatu duzu",Toast.LENGTH_SHORT).show();
+                    }
+                    //Toast.makeText(context,"Bienvenido "+result.getUser(),Toast.LENGTH_SHORT);
+
+
+                }
+            }.execute();
+        }
+
+
     }
 
 
