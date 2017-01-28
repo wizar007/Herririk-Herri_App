@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     android:background="@drawable/fondojueg"
-    android:id="@+id/RecordLayout"
+    android:id="@+id/record_layout"
     tools:context="herririk_herri.tta.intel.ehu.eus.herririk_herri.RecordActivity">
     <Button
         android:id="@+id/record_button_init"
@@ -19,21 +19,21 @@
         android:text="@string/button_inicio"
         android:onClick="load"/>
     <TextView
-        android:id="@+id/record_arik_mota"
+        android:id="@+id/record_mota"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18dp"
         android:visibility="invisible"
         android:text="" />
     <TextView
-        android:id="@+id/record_arik_code"
+        android:id="@+id/record_code"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18dp"
         android:visibility="invisible"
         android:text="" />
     <TextView
-        android:id="@+id/record_text"
+        android:id="@+id/record_enunciado"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
@@ -48,7 +48,15 @@
         android:layout_gravity="center"
         android:text="@string/button_startRecord"
         android:visibility="invisible"
-        android:onClick="record"/>
+        android:onClick="recordAudio"/>
+    <Button
+        android:id="@+id/record_button_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/button_play"
+        android:visibility="invisible"
+        android:onClick="play"/>
 
     <Button
         android:id="@+id/record_button_correct"
@@ -58,6 +66,14 @@
         android:text="@string/button_correct"
         android:visibility="invisible"
         android:onClick="zuzendu"/>
+    <Button
+        android:id="@+id/record_button_solucion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/button_correct_sol"
+        android:visibility="invisible"
+        android:onClick="play"/>
     <Button
         android:id="@+id/record_button_next"
         android:layout_width="wrap_content"

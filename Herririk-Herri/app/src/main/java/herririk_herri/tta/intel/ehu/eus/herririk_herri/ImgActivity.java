@@ -96,7 +96,7 @@ public class ImgActivity extends AppCompatActivity implements View.OnClickListen
                 size=result.getSize();
                 //Toast.makeText(context,"Exito",Toast.LENGTH_SHORT).show();
                 TextView textWording=(TextView)findViewById(R.id.img_code);
-                textWording.setText(R.string.Img_ark_code+result.lExercise.get(0).getAriketaKode());
+                textWording.setText(R.string.Img_ark_code+": "+result.lExercise.get(0).getAriketaKode());
                 textWording.setVisibility(View.VISIBLE);
                 getData();
                 DownloadImage(result.lExercise.get(0).getImg());

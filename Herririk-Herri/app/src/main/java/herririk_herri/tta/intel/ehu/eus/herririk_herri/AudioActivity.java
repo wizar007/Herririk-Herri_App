@@ -1,5 +1,6 @@
 package herririk_herri.tta.intel.ehu.eus.herririk_herri;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -96,7 +97,7 @@ public class AudioActivity extends AppCompatActivity implements View.OnClickList
                 size=result.getSize();
                 //Toast.makeText(context,"Exito",Toast.LENGTH_SHORT).show();
                 TextView textWording=(TextView)findViewById(R.id.audio_code);
-                textWording.setText(R.string.audio_ark_code+result.lExercise.get(0).getAriketaKode());
+                textWording.setText(getString(R.string.audio_ark_code)+": "+result.lExercise.get(0).getAriketaKode());
                 textWording.setVisibility(View.VISIBLE);
                 getData();
 
@@ -268,4 +269,6 @@ public class AudioActivity extends AppCompatActivity implements View.OnClickList
 
         findViewById(R.id.audio_button_correct).setVisibility(View.VISIBLE);
     }
+
+
 }

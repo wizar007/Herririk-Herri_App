@@ -1,16 +1,28 @@
 package herririk_herri.tta.intel.ehu.eus.herririk_herri;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
+import java.io.IOException;
 import java.util.List;
 
+import herririk_herri.tta.intel.ehu.eus.herririk_herri.View.AudioPlayer;
 import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.Exercise;
 import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.Kultura;
 import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.ListExercise;
@@ -22,6 +34,10 @@ public class RecordActivity extends AppCompatActivity {
     private int size=2;
     final String URL=null;
     private List<Exercise> lExercise;
+    int aciertos;
+    private String solaudioURL;
+    private String record;
+    public final static int AUDIO_REQUEST_CODE=3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +96,10 @@ public class RecordActivity extends AppCompatActivity {
                 Toast.makeText(context,"Aqui he llegado",Toast.LENGTH_SHORT).show();*/
                 lExercise=result.lExercise;
                 size=result.getSize();
-                Toast.makeText(context,"Exito",Toast.LENGTH_SHORT).show();
+                TextView textWording=(TextView)findViewById(R.id.record_code);
+                textWording.setText(getString(R.string.Record_ark_code)+": "+result.lExercise.get(0).getAriketaKode());
+                textWording.setVisibility(View.VISIBLE);
+                getData();
 
 
 
@@ -94,6 +113,82 @@ public class RecordActivity extends AppCompatActivity {
             }
         }.execute();
 
+    }
+    protected void getData()
+    {
+
+        Exercise test=lExercise.get(indice);
+        TextView textWording=(TextView)findViewById(R.id.record_enunciado);
+        textWording.setText(test.getEnunciado());
+        textWording.setVisibility(View.VISIBLE);
+        solaudioURL=test.getAudio();
+        findViewById(R.id.record_button_record).setVisibility(View.VISIBLE);
+
+
+
+
+    }
+
+    public void recordAudio(View view)
+    {
+        if(!getPackageManager().hasSystemFeature(PackageManager.FEATURE_MICROPHONE))
+        {
+            Toast.makeText(this, R.string.no_micro, Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Intent intent=new Intent(MediaStore.Audio.Media.RECORD_SOUND_ACTION);
+            if(intent.resolveActivity(getPackageManager())!=null) {
+                startActivityForResult(intent, AUDIO_REQUEST_CODE);
+                findViewById(R.id.record_button_correct).setVisibility(View.VISIBLE);
+            }
+            else
+                Toast.makeText(this,R.string.no_app,Toast.LENGTH_SHORT).show();
+        }
+
+    }
+    protected void zuzendu(View view) {
+
+        findViewById(R.id.record_button_correct).setVisibility(View.INVISIBLE);
+        findViewById(R.id.record_button_solucion).setVisibility(View.VISIBLE);
+        findViewById(R.id.record_button_next).setVisibility(View.VISIBLE);
+    }
+
+    public void play(View view)
+    {
+        String temp;
+        if(view.getId()==R.id.record_button_solucion) {
+            temp = solaudioURL;
+        }
+        else
+        {
+            temp = record;
+        }
+        final String audio = temp;
+        final Thread thread = new Thread(new Runnable() {
+            public void run() {
+            }});
+        AudioPlayer audioPlay = new AudioPlayer(findViewById(R.id.record_layout),thread);
+        try {
+            audioPlay.setAudioUri(Uri.parse(audio));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+    @Override
+    protected void onActivityResult(int requestCode,int resultCode, Intent data)
+    {
+        if(resultCode != Activity.RESULT_OK)
+            return;
+        if(requestCode==AUDIO_REQUEST_CODE)
+        {
+            Toast.makeText(this,"Grabado con exito",Toast.LENGTH_SHORT).show();
+            Uri urirecord=data.getData();
+            record=urirecord.toString();
+            findViewById(R.id.record_button_play).setVisibility(View.VISIBLE);
+
+        }
     }
 
 
