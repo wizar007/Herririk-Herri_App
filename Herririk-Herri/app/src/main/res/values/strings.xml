@@ -12,6 +12,7 @@
     <string name="button_next">Hurrengo</string>
     <string name="button_startRecord">Hasi grabazioa</string>
     <string name="button_correct">Zuzendu</string>
+    <string name="button_play">Entzun</string>
 
     <!--Toasts-->
     <string name="toast_fail">Erantzuna ez da zuzena!</string>
@@ -62,6 +63,10 @@
     <string name="Img_title">Zuk nola ezango zenuke?</string>
     <string name="Img_ark_mota">Ariketa Mota:</string>
     <string name="Img_ark_code">Ariketa Code</string>
+    <!--ImgActivity Layout-->
+    <string name="Audio_title">Entzun eta Idatzi</string>
+    <string name="audio_ark_mota">Ariketa Mota:</string>
+    <string name="audio_ark_code">Ariketa Code</string>
 
 
 </resources>

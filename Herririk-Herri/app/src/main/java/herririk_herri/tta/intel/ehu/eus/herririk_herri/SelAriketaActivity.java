@@ -39,7 +39,7 @@ public class SelAriketaActivity extends AppCompatActivity {
 
     public void selAriketa(View view)
     {
-        Intent intent=new Intent(this,RecordActivity.class);
+
         SharedPreferences myprefs= this.getSharedPreferences("herri", MODE_WORLD_READABLE);
         //this.setTitle("Prueba111");
 
@@ -47,20 +47,24 @@ public class SelAriketaActivity extends AppCompatActivity {
         switch (view.getId())
         {
             case (R.id.selArik_button_audio):
+                Intent intent=new Intent(this,AudioActivity.class);
                 myprefs.edit().putString("ariketa","Audio").commit();
+                myprefs.edit().commit();
                 startActivity(intent);
 
                 break;
             case (R.id.selArik_button_img):
-                intent=new Intent(this,ImgActivity.class);
+                Intent intent2=new Intent(this,ImgActivity.class);
                 myprefs.edit().putString("ariketa","Img").commit();
-                startActivity(intent);
+                myprefs.edit().commit();
+                startActivity(intent2);
 
                 break;
             case (R.id.selArik_button_record):
-                intent=new Intent(this,RecordActivity.class);
+                Intent intent3=new Intent(this,RecordActivity.class);
                 myprefs.edit().putString("ariketa","Record").commit();
-                startActivity(intent);
+                myprefs.edit().commit();
+                startActivity(intent3);
 
                 break;
 
