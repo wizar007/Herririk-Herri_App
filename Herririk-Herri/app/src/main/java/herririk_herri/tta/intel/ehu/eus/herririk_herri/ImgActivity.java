@@ -194,7 +194,7 @@ public class ImgActivity extends AppCompatActivity implements View.OnClickListen
             Toast.makeText(getApplicationContext(),R.string.toast_success,Toast.LENGTH_SHORT).show();
             aciertos++;
         }
-        findViewById(R.id.img_button_correct).setVisibility(View.VISIBLE);
+        findViewById(R.id.img_button_correct).setVisibility(View.INVISIBLE);
         findViewById(R.id.img_button_next).setVisibility(View.VISIBLE);
     }
     protected void SuperaEjercicio()
@@ -238,7 +238,6 @@ public class ImgActivity extends AppCompatActivity implements View.OnClickListen
                         if(result.getTestVis()==200)
                         {
                             Toast.makeText(context,"Has desbloqueado el ejercicio siguiente",Toast.LENGTH_SHORT).show();
-                            load_prefs();
                         }
                         //Toast.makeText(context,"Bienvenido "+result.getUser(),Toast.LENGTH_SHORT);
 
@@ -250,10 +249,7 @@ public class ImgActivity extends AppCompatActivity implements View.OnClickListen
         }
 
     }
-    protected void load_prefs()
-    {
 
-    }
 
     public void next(View view)
     {

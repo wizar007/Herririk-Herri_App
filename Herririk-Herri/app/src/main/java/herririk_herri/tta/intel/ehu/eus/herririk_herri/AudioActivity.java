@@ -1,13 +1,18 @@
 package herririk_herri.tta.intel.ehu.eus.herririk_herri;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -18,6 +23,7 @@ import java.util.List;
 import herririk_herri.tta.intel.ehu.eus.herririk_herri.View.AudioPlayer;
 import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.Exercise;
 import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.ListExercise;
+import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.User;
 import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.coms.ProgressTask;
 import herririk_herri.tta.intel.ehu.eus.herririk_herri.model.coms.RestClient;
 
@@ -44,8 +50,9 @@ public class AudioActivity extends AppCompatActivity implements View.OnClickList
         final String arikmota=myprefs.getString("ariketa",null);
         //llamada a logica para solicitar los datos, petición al servidor
         View element=findViewById(R.id.audio_button_init);
+        element.setVisibility(View.GONE);
         View elementplay=findViewById(R.id.audio_button_play);
-        element.setVisibility(View.VISIBLE);
+        elementplay.setVisibility(View.VISIBLE);
         final int indice=0;
         new ProgressTask<ListExercise>(this)
         {
@@ -110,6 +117,7 @@ public class AudioActivity extends AppCompatActivity implements View.OnClickList
 
 
     }
+
     protected void getData()
     {
 
@@ -133,6 +141,32 @@ public class AudioActivity extends AppCompatActivity implements View.OnClickList
         group.addView(radio3);
 
 
+
+    }
+
+    protected void zuzendu(View view) {
+        RadioGroup group = (RadioGroup) findViewById(R.id.audio_choices);
+        int choices = group.getChildCount();
+        for (int i = 0; i < choices; i++)
+            group.getChildAt(i).setEnabled(false);
+        View selected = group.findViewById(group.getCheckedRadioButtonId());
+        final int selectednum=group.indexOfChild(selected);
+        Exercise pregunta=lExercise.get(indice);
+
+        group.getChildAt(pregunta.getSolucion()).setBackgroundColor(Color.GREEN);
+        //Toast.makeText(getApplicationContext(),"Has dicho algo",Toast.LENGTH_SHORT);
+        if(selectednum != pregunta.getSolucion())
+        {
+            findViewById(group.getCheckedRadioButtonId()).setBackgroundColor(Color.RED);
+            Toast.makeText(getApplicationContext(),R.string.toast_fail, Toast.LENGTH_SHORT).show();
+
+        }else
+        {
+            Toast.makeText(getApplicationContext(),R.string.toast_success,Toast.LENGTH_SHORT).show();
+            aciertos++;
+        }
+        findViewById(R.id.audio_button_correct).setVisibility(View.INVISIBLE);
+        findViewById(R.id.audio_button_next).setVisibility(View.VISIBLE);
     }
 
     public void play(View view)
@@ -141,11 +175,90 @@ public class AudioActivity extends AppCompatActivity implements View.OnClickList
         final Thread thread = new Thread(new Runnable() {
             public void run() {
             }});
-        AudioPlayer audioPlay = new AudioPlayer(findViewById(R.id.test_layout),thread);
+        AudioPlayer audioPlay = new AudioPlayer(findViewById(R.id.audio_layout),thread);
         try {
             audioPlay.setAudioUri(Uri.parse(audioURL));
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+    }
+
+    public void next(View view)
+    {
+
+        if(indice==size-1)
+        {
+            SuperaEjercicio();
+            //Toast.makeText(this,"Ariketa bukatuta "+aciertos+" erantzun zuzena izan duzu",Toast.LENGTH_SHORT).show();
+            Intent intent= new Intent(this,SelAriketaActivity.class);
+            startActivity(intent);
+        }
+        else
+        {
+            indice++;
+        }
+
+        RadioGroup group= (RadioGroup)findViewById(R.id.audio_choices);
+        group.removeAllViews();
+        getData();
+        findViewById(R.id.audio_button_next).setVisibility(View.INVISIBLE);
+        if(indice==size-1)
+        {
+            Button bt=(Button)findViewById(R.id.audio_button_next);
+            bt.setText("Bukatu test");
+        }
+
+    }
+    protected void SuperaEjercicio()
+    {
+        final String path=getString(R.string.url_server);
+        if(aciertos>=size/2)
+        {
+            SharedPreferences myprefs=getSharedPreferences("user",MODE_WORLD_READABLE);
+            final String user=myprefs.getString("user",null);
+            final int testVis=myprefs.getInt("unlockTest",0);
+            int ark2=myprefs.getInt("unlockariketa2",0);
+            final int ark3Unblocked=myprefs.getInt("unlockariketa3",0);
+            if(ark2==0)
+            {
+                final int ark2Unblocked=1;
+                myprefs.edit().putInt("unlockariketa2",ark2Unblocked).commit();
+                myprefs.edit().commit();
+                new ProgressTask<User>(this)
+                {
+
+                    @Override
+                    protected User work() throws Exception {
+                        User result=new User();
+                        RestClient rest = new RestClient(path);//se genera
+                        //rest.setProperty();
+                        JSONObject jsonObject=new JSONObject();
+                        jsonObject.put("lastName"," ");
+                        jsonObject.put("login",user);
+                        jsonObject.put("name"," ");
+                        jsonObject.put("password"," ");
+                        jsonObject.put("testVis",testVis);
+                        jsonObject.put("ark3Unblocked",ark2Unblocked);
+                        jsonObject.put("ark2Unblocked",ark3Unblocked);
+                        Log.e("JSON enviado:",jsonObject.toString());
+                        result.setTestVis(rest.postJson(jsonObject,"updateUser"));//Chapuza para poder pasar el response code sin tener que modificar progressTask
+                        return result;
+                    }
+
+                    @Override
+                    protected void onFinish(User result) {
+                        if(result.getTestVis()==200)
+                        {
+                            Toast.makeText(context,"Has desbloqueado el ejercicio siguiente",Toast.LENGTH_SHORT).show();
+                        }
+                        //Toast.makeText(context,"Bienvenido "+result.getUser(),Toast.LENGTH_SHORT);
+
+
+                    }
+                }.execute();
+            }
+
         }
 
     }
