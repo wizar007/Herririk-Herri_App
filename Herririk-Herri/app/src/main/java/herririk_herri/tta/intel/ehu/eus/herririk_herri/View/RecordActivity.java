@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -123,7 +124,7 @@ public class RecordActivity extends AppCompatActivity {
 
         Exercise test=lExercise.get(indice);
         TextView textWording=(TextView)findViewById(R.id.record_enunciado);
-        textWording.setText(test.getEnunciado());
+        textWording.setText(Html.fromHtml(test.getEnunciado()));
         textWording.setVisibility(View.VISIBLE);
         solaudioURL=test.getAudio();
         findViewById(R.id.record_button_record).setVisibility(View.VISIBLE);

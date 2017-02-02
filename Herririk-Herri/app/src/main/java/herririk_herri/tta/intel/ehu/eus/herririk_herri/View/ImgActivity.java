@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -97,7 +98,7 @@ public class ImgActivity extends AppCompatActivity implements View.OnClickListen
                 size=result.getSize();
                 //Toast.makeText(context,"Exito",Toast.LENGTH_SHORT).show();
                 TextView textWording=(TextView)findViewById(R.id.img_code);
-                textWording.setText(R.string.Img_ark_code+": "+result.lExercise.get(0).getAriketaKode());
+                textWording.setText(getString(R.string.Img_ark_code)+": "+result.lExercise.get(0).getAriketaKode());
                 textWording.setVisibility(View.VISIBLE);
                 getData();
                 DownloadImage(result.lExercise.get(0).getImg());
@@ -155,7 +156,7 @@ public class ImgActivity extends AppCompatActivity implements View.OnClickListen
 
         Exercise test=lExercise.get(indice);
         TextView textWording=(TextView)findViewById(R.id.img_enunciado);
-        textWording.setText(test.getEnunciado());
+        textWording.setText(Html.fromHtml(test.getEnunciado()));
         textWording.setVisibility(View.VISIBLE);
         DownloadImage(test.getImg());
         RadioGroup group= (RadioGroup)findViewById(R.id.img_choices);
