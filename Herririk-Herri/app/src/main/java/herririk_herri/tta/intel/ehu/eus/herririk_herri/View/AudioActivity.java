@@ -37,7 +37,7 @@ public class AudioActivity extends AppCompatActivity implements View.OnClickList
     final String URL=null;
     private List<Exercise> lExercise;
     int aciertos;
-    private String audioURL;
+    private String audioURL;;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

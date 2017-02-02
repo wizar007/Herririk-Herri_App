@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -119,7 +120,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
         Test test=lTest.get(indice);
         TextView textWording=(TextView)findViewById(R.id.test_enunciado);
-        textWording.setText(test.getEnunciado());
+        textWording.setText(Html.fromHtml(test.getEnunciado()));
         textWording.setVisibility(View.VISIBLE);
         RadioGroup group= (RadioGroup)findViewById(R.id.test_choices);
         RadioButton radio= new RadioButton(this);

@@ -78,12 +78,12 @@ public class AudioPlayer implements MediaController.MediaPlayerControl, MediaPla
 
 
     public int getDuration() {
-        return 0;
+        return player.getDuration();
     }
 
 
     public int getCurrentPosition() {
-        return 0;
+        return player.getCurrentPosition();
     }
 
 
@@ -93,7 +93,7 @@ public class AudioPlayer implements MediaController.MediaPlayerControl, MediaPla
 
 
     public boolean isPlaying() {
-        return true;
+        return player.isPlaying();
     }
 
 
